@@ -19,7 +19,7 @@ def open_alert():
         ssh = paramiko.SSHClient()
         # connect to the remote server
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_password, password=remote_server_password)
+        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_username, password=remote_server_password)
 
         # open terminal
         invoke = ssh.invoke_shell()
@@ -61,7 +61,7 @@ def close_alert():
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
         # Connect to the remote server
-        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_password, password=remote_server_password)
+        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_username, password=remote_server_password)
 
         # Open a shell session
         invoke = ssh.invoke_shell()
@@ -96,7 +96,7 @@ def send_file():
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         # Connect to the remote server
-        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_password, password=remote_server_password)
+        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_username, password=remote_server_password)
         # Open an SFTP session
         sftp = ssh.open_sftp()
         # Upload the file from the local system to the remote server
@@ -123,7 +123,7 @@ def check_situation():
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
         # Connect to the remote server
-        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_password, password=remote_server_password)
+        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_username, password=remote_server_password)
 
         # Execute a command on the remote server
         stdin, stdout, stderr = ssh.exec_command("ps aux|grep 'python3 -u stock_alert_first.py'", get_pty=True)
@@ -163,7 +163,7 @@ def check_file_update():
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
         # Connect to the remote server
-        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_password, password=remote_server_password)
+        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_username, password=remote_server_password)
 
         # Execute a command on the remote server to get file status
         stdin, stdout, stderr = ssh.exec_command("cd alert_system;stat 'ALERT DATA INPUT.xlsx'", get_pty=True)
@@ -203,7 +203,7 @@ def get_log():
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
         # Connect to the remote server
-        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_password, password=remote_server_password)
+        ssh.connect(hostname=remote_server_ip, port=remote_server_port, username=remote_server_username, password=remote_server_password)
 
         # Open an SFTP session
         sftp = ssh.open_sftp()
